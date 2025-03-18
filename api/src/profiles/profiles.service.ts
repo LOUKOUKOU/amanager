@@ -17,20 +17,9 @@ export class ProfilesService {
   create(createProfileDto: CreateProfileDto) {
     const profile = new Profile();
     profile.type = createProfileDto.type;
-
-    return this.profileRepository.save(profile);
-  }
-
-  async createUserProfile(
-    user: User,
-    // organisation: Organisation,
-    type: PROFILE_TYPE,
-  ) {
-    const profile = new Profile();
-    profile.user = user;
-    profile.type = type;
-    // profile.organisations = [organisation];
-    // profile.projects = organisation.projects;
+    profile.displayName = createProfileDto.displayName;
+    profile.user = createProfileDto.user;
+    profile.organisation = createProfileDto.organisation;
 
     return this.profileRepository.save(profile);
   }
@@ -41,6 +30,12 @@ export class ProfilesService {
 
   findOne(id: number) {
     return `This action returns a #${id} profile`;
+  }
+
+  findOneByUser(id: number) {
+    return this.profileRepository.findOne({
+      where: { user: { id } },
+    });
   }
 
   update(id: number, updateProfileDto: UpdateProfileDto) {

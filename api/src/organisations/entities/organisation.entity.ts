@@ -4,9 +4,9 @@ import {
   Column,
   Entity,
   Generated,
-  ManyToMany,
-  ManyToOne,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -21,11 +21,8 @@ export class Organisation {
   @Column()
   name: string;
 
-  @ManyToMany(() => Profile, (profile) => profile.organisations)
-  employees: Profile[];
-
-  @ManyToOne(() => Profile, (owner) => owner.organisations)
-  owner: Profile;
+  @OneToMany(() => Profile, (profile) => profile.organisation)
+  members: Profile[];
 
   @OneToMany(() => Project, (project) => project.organisation)
   projects: Project[];

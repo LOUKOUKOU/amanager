@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -16,6 +16,7 @@ export class UsersService {
     const user = new User();
     user.password = createUserDto.password;
     user.email = createUserDto.email;
+    user.username = createUserDto.username;
 
     return this.userRepository.save(user);
   }
@@ -31,6 +32,13 @@ export class UsersService {
   findOneByUsername(username: string) {
     return this.userRepository.findOne({
       where: { username },
+      select: ['id', 'email', 'username', 'password'],
+    });
+  }
+
+  findOneByEmail(email: string) {
+    return this.userRepository.findOne({
+      where: { email },
       select: ['id', 'email', 'username', 'password'],
     });
   }
