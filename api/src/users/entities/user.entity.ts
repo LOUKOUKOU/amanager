@@ -15,15 +15,12 @@ export class User {
   @Column()
   email: string;
 
+  @Column()
+  username: string;
+
   @Column({ select: false })
   password: string;
 
   @OneToOne(() => Profile, (profile) => profile.user)
   profile: Profile;
-
-  @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
 }

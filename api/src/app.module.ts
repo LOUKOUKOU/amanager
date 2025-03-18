@@ -11,6 +11,9 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { UsersMiddleWare } from './users/users.middleware';
 import { UsersController } from './users/users.controller';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/auth.guard';
 
 @Module({
   imports: [
@@ -30,9 +33,16 @@ import { UsersController } from './users/users.controller';
     OrganisationsModule,
     TasksModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
