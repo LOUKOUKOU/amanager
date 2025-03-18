@@ -4,7 +4,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PROFILE_TYPE } from 'src/profiles/entities/profile.entity';
 
 @Injectable()
 export class UsersService {
@@ -17,18 +16,23 @@ export class UsersService {
     const user = new User();
     user.password = createUserDto.password;
     user.email = createUserDto.email;
-    user.firstName = createUserDto.firstName;
-    user.lastName = createUserDto.lastName;
 
     return this.userRepository.save(user);
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  findOneByUsername(username: string) {
+    return this.userRepository.findOne({
+      where: { username },
+      select: ['id', 'email', 'username', 'password'],
+    });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

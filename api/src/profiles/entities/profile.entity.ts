@@ -50,4 +50,10 @@ export class Profile {
 
   @ManyToMany(() => Project, (project) => project.developers)
   assignedProjects: Project[];
+
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
 }

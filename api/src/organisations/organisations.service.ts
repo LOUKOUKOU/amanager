@@ -3,7 +3,7 @@ import { CreateOrganisationDto } from './dto/create-organisation.dto';
 import { UpdateOrganisationDto } from './dto/update-organisation.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Organisation } from './entities/organisation.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class OrganisationsService {
@@ -12,8 +12,8 @@ export class OrganisationsService {
     private readonly organisationRepository: Repository<Organisation>,
   ) {}
 
-  createName(firstName: string, lastName: string) {
-    return `${firstName} ${lastName}'s Organisation`;
+  createName(username: string) {
+    return `${username}'s Organisation`;
   }
 
   create(createOrganisationDto: CreateOrganisationDto) {
@@ -27,8 +27,20 @@ export class OrganisationsService {
     return `This action returns all organisations`;
   }
 
+  findAllEmployee(employeeId: number) {
+    return this.organisationRepository.find({
+      where: { employees: { id: In([employeeId]) } },
+    });
+  }
+
   findOne(id: number) {
     return this.organisationRepository.findOne({ where: { id } });
+  }
+
+  findOneByEmployee(companyId: number, employeeId: number) {
+    return this.organisationRepository.findOne({
+      where: { id: companyId, employees: { id: employeeId } },
+    });
   }
 
   update(id: number, updateOrganisationDto: UpdateOrganisationDto) {

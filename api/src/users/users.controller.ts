@@ -13,6 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { OrganisationsService } from 'src/organisations/organisations.service';
 import { ProfilesService } from 'src/profiles/profiles.service';
 import { PROFILE_TYPE } from 'src/profiles/entities/profile.entity';
+import { Public } from 'src/metadata';
 
 @Controller('users')
 export class UsersController {
@@ -47,10 +48,7 @@ export class UsersController {
         ? await this.organisationsService.create({
             name:
               createUserDto.organisationName ||
-              this.organisationsService.createName(
-                createUserDto.firstName,
-                createUserDto.lastName,
-              ),
+              this.organisationsService.createName(createUserDto.username),
           })
         : await this.organisationsService.findOne(createUserDto.organisationId);
 
