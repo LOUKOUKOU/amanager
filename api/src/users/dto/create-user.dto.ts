@@ -1,11 +1,14 @@
-import { PROFILE_TYPE } from 'src/profiles/entities/profile.entity';
+import { Profile } from 'src/profiles/entities/profile.entity';
 
+/**
+ * Users are linked to profiles when the profile is made
+ */
 export class CreateUserDto {
-  organisationId?: number;
-  organisationName?: string;
   email: string;
-  lastName: string;
   password: string;
   username: string;
-  type: PROFILE_TYPE;
+}
+
+export class CreateAdminUserDto extends CreateUserDto {
+  organisationName: string;
 }

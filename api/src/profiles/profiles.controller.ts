@@ -16,6 +16,10 @@ import { Public } from 'src/metadata';
 export class ProfilesController {
   constructor(private readonly profilesService: ProfilesService) {}
 
+  /**
+   * **Supervisor or developer**
+   * create user ⇒ create profile  ⇒ fetch organisation ⇒ link profile to organisation
+   */
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);

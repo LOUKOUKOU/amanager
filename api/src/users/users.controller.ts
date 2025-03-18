@@ -23,41 +23,9 @@ export class UsersController {
     private readonly profilesService: ProfilesService,
   ) {}
 
-  /**
-   * **Admin**
-   * create user ⇒ create profile ⇒ create organisation ⇒ link profile to organisation
-   *
-   * **Supervisor or developer**
-   * create user ⇒ create profile  ⇒ fetch organisation ⇒ link profile to organisation
-   */
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    const newOrganisation =
-      createUserDto.type == PROFILE_TYPE.ADMIN && !createUserDto.organisationId;
-
     const createdUser = await this.usersService.create(createUserDto);
-
-    const newProfile = await this.profilesService.createUserProfile(
-      createdUser,
-      createUserDto.type,
-    );
-
-    const createdOrganization =
-      // The !createUserDto.organisationId is just to shut up the linter
-      newOrganisation || !createUserDto.organisationId
-        ? await this.organisationsService.create({
-            name:
-              createUserDto.organisationName ||
-              this.organisationsService.createName(createUserDto.username),
-          })
-        : await this.organisationsService.findOne(createUserDto.organisationId);
-
-    this.profilesService.update(newProfile.id, {
-      organisations: createdOrganization ? [createdOrganization] : [],
-      projects: createdOrganization?.projects || [],
-      tasks: [],
-    });
-
     return createdUser;
   }
 

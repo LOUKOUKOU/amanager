@@ -29,7 +29,7 @@ export class OrganisationsService {
 
   findAllEmployee(employeeId: number) {
     return this.organisationRepository.find({
-      where: { employees: { id: In([employeeId]) } },
+      where: { members: { id: In([employeeId]) } },
     });
   }
 
@@ -37,9 +37,13 @@ export class OrganisationsService {
     return this.organisationRepository.findOne({ where: { id } });
   }
 
+  findOneByProfile(id: number) {
+    return this.organisationRepository.findOne({ where: { members: { id } } });
+  }
+
   findOneByEmployee(companyId: number, employeeId: number) {
     return this.organisationRepository.findOne({
-      where: { id: companyId, employees: { id: employeeId } },
+      where: { id: companyId, members: { id: employeeId } },
     });
   }
 

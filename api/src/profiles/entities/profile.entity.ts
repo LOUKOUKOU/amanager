@@ -25,15 +25,8 @@ export class Profile {
   id: number;
 
   @Generated('uuid')
+  @Column()
   profileId: string;
-
-  @OneToOne(() => User, (user) => user.profile)
-  @JoinColumn()
-  user: User;
-
-  @OneToMany(() => Organisation, (organisation) => organisation.owner)
-  @JoinColumn()
-  organisations: Organisation[];
 
   @Column({
     type: 'enum',
@@ -42,18 +35,26 @@ export class Profile {
   })
   type: PROFILE_TYPE;
 
+  @Column()
+  displayName: string;
+
+  @OneToOne(() => User, (user) => user.profile)
+  @JoinColumn()
+  user: User;
+
+  @OneToOne(() => Organisation, (organisation) => organisation.members)
+  @JoinColumn()
+  organisation: Organisation;
+
   @OneToMany(() => Task, (task) => task.assignee)
+  @JoinColumn()
   tasks: Task[];
 
   @OneToMany(() => Project, (project) => project.manager)
+  @JoinColumn()
   projects: Project[];
 
   @ManyToMany(() => Project, (project) => project.developers)
+  @JoinColumn()
   assignedProjects: Project[];
-
-  @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
 }

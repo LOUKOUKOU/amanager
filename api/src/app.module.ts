@@ -9,8 +9,6 @@ import { OrganisationsModule } from './organisations/organisations.module';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
-import { UsersMiddleWare } from './users/users.middleware';
-import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
@@ -46,6 +44,6 @@ import { AuthGuard } from './auth/auth.guard';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(UsersMiddleWare).forRoutes(UsersController);
+    // consumer.apply(UsersMiddleWare).forRoutes(UsersController);
   }
 }
