@@ -50,7 +50,7 @@ export class Profile {
   @JoinColumn()
   tasks: Task[];
 
-  @OneToMany(() => Project, (project) => project.manager)
+  @OneToMany(() => Project, (project) => project.supervisor)
   @JoinColumn()
   projects: Project[];
 
