@@ -49,6 +49,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
 import { CardTasksComponent } from "./components/cards/card-tasks/card-tasks.component";
 import { CardProjectsComponent } from "./components/cards/card-projects/card-projects.component";
+import { CardTableSupervisorsComponent } from "./components/cards/card-table-supervisors/card-table-supervisors.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CardProjectsComponent } from "./components/cards/card-projects/card-pro
     CardTasksComponent,
     CardProfileComponent,
     CardProjectsComponent,
+    CardTableSupervisorsComponent,
     SidebarComponent,
     FooterComponent,
     FooterSmallComponent,
@@ -76,6 +78,7 @@ import { CardProjectsComponent } from "./components/cards/card-projects/card-pro
     CardSettingsComponent,
     CardSocialTrafficComponent,
     CardStatsComponent,
+    CardTableComponent,
     CardTableComponent,
     HeaderStatsComponent,
     MapExampleComponent,
