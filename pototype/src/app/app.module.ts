@@ -29,7 +29,7 @@ import { AdminNavbarComponent } from "./components/navbars/admin-navbar/admin-na
 import { AuthNavbarComponent } from "./components/navbars/auth-navbar/auth-navbar.component";
 import { CardBarChartComponent } from "./components/cards/card-bar-chart/card-bar-chart.component";
 import { CardLineChartComponent } from "./components/cards/card-line-chart/card-line-chart.component";
-import { CardPageVisitsComponent } from "./components/cards/card-page-visits/card-page-visits.component";
+import { TableProjectsComponent } from "./components/cards/table-projects/table-projects.component";
 import { CardProfileComponent } from "./components/cards/card-profile/card-profile.component";
 import { CardSettingsComponent } from "./components/cards/card-settings/card-settings.component";
 import { CardSocialTrafficComponent } from "./components/cards/card-social-traffic/card-social-traffic.component";
@@ -47,11 +47,22 @@ import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pa
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
+import { CardTasksComponent } from "./components/cards/card-tasks/card-tasks.component";
+import { CardProjectsComponent } from "./components/cards/card-projects/card-projects.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    CardTasksComponent,
+    CardProfileComponent,
+    CardProjectsComponent,
+    SidebarComponent,
+    FooterComponent,
+    FooterSmallComponent,
+    FooterAdminComponent,
+    AuthNavbarComponent,
+    AdminNavbarComponent,
     CardBarChartComponent,
     CardLineChartComponent,
     IndexDropdownComponent,
@@ -59,20 +70,15 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     TableDropdownComponent,
     NotificationDropdownComponent,
     UserDropdownComponent,
-    SidebarComponent,
-    FooterComponent,
-    FooterSmallComponent,
-    FooterAdminComponent,
-    CardPageVisitsComponent,
-    CardProfileComponent,
+    ProfileComponent,
+    TableDropdownComponent,
+    TableProjectsComponent,
     CardSettingsComponent,
     CardSocialTrafficComponent,
     CardStatsComponent,
     CardTableComponent,
     HeaderStatsComponent,
     MapExampleComponent,
-    AuthNavbarComponent,
-    AdminNavbarComponent,
     IndexNavbarComponent,
     AdminComponent,
     AuthComponent,
@@ -83,7 +89,6 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     RegisterComponent,
     IndexComponent,
     LandingComponent,
-    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

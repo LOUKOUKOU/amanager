@@ -23,7 +23,7 @@ import { ProfileComponent } from "./views/profile/profile.component";
 const routes: Routes = [
   // admin views
   {
-    path: "",
+    path: "admin",
     component: AdminComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
   // { path: "", component: IndexComponent },
-  { path: "**", redirectTo: "", pathMatch: "full" },
+  { path: "**", redirectTo: "admin", pathMatch: "full" },
 ];
 
 @NgModule({
