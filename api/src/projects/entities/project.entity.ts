@@ -16,7 +16,7 @@ export class Project {
   id: number;
 
   @ManyToOne(() => Profile, (profile) => profile.projects)
-  manager: Profile;
+  supervisor: Profile;
 
   @ManyToMany(() => Profile, (profile) => profile.assignedProjects)
   developers: Profile[];
