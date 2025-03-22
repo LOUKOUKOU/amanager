@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // layouts
@@ -15,18 +15,21 @@ import { RegisterComponent } from './views/auth/register/register.component';
 
 // no layouts views
 import { ProfileComponent } from './views/profile/profile.component';
+import { LoginService } from './services/LoginService';
+import { authGuardGuard } from './guards/auth-guard.guard';
+import { SessionService } from './services/SessionService';
 
 export const routes: Routes = [
   // admin views
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [authGuardGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects', component: SettingsComponent },
       // { path: 'tasks', component: TablesComponent },
       // { path: 'profiles', component: TablesComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
   // auth views
@@ -41,5 +44,19 @@ export const routes: Routes = [
   },
   // no layout views
   { path: 'profile', component: ProfileComponent },
+  {
+    path: '',
+    redirectTo: () => {
+      const sessionService = inject(SessionService);
+      console.log(sessionService.isAuthenticated());
+
+      if (sessionService.isAuthenticated()) {
+        return 'admin/dashboard';
+      } else {
+        return 'auth/login';
+      }
+    },
+    pathMatch: 'full',
+  },
   { path: '**', redirectTo: 'admin', pathMatch: 'full' },
 ];

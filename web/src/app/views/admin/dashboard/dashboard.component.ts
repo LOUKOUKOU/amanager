@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   NotusTableComponent,
   TableCell,
-} from '@common/components/table/notus-table.component';
+} from '@/components/table/notus-table.component';
 
 @Component({
   selector: 'app-dashboard',

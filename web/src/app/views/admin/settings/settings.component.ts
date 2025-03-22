@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CardProfileComponent } from '@common/components/cards/card-profile/card-profile.component';
-import { CardSettingsComponent } from '@common/components/cards/card-settings/card-settings.component';
+import { CardProfileComponent } from '@/components/cards/card-profile/card-profile.component';
+import { CardSettingsComponent } from '@/components/cards/card-settings/card-settings.component';
 
 @Component({
   selector: 'app-settings',

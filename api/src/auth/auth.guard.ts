@@ -9,8 +9,6 @@ import { jwtConstants } from './constants';
 import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from 'src/metadata';
-import { OrganisationsService } from 'src/organisations/organisations.service';
-import { PROFILE_TYPE } from 'src/profiles/entities/profile.entity';
 import { CreateAdminUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 
