@@ -10,6 +10,7 @@ export type SessionInfo = {
   access_token: string;
   username: string;
   displayName: string;
+  profileId: string;
   organisationName: string;
 };
 
@@ -68,6 +69,7 @@ export class AuthService {
       username: user.username,
       displayName: profile.displayName,
       organisationName: organisation.name,
+      profileId: profile.profileId,
       access_token: await this.jwtService.signAsync(payload),
     };
   }
