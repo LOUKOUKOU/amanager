@@ -5,16 +5,27 @@
     <div class="flex flex-wrap items-center">
       <div class="relative w-full px-4 max-w-full flex-grow flex-1">
         <h3 class="font-semibold text-base text-blueGray-700">
-          <ng-content select="table-head"></ng-content>
+          <ng-content select="table-head" />
         </h3>
       </div>
       <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-        <button
+        @if (link) {
+        <a
+          [routerLink]="link"
           class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
         >
           See all
+        </a>
+        } @if (button) {
+        <button
+          (click)="buttonClickEvent()"
+          class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+        >
+          {{ button }}
         </button>
+        }
       </div>
     </div>
   </div>
@@ -22,28 +33,34 @@
     <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
-        @for (item of tableConfig.headerConfig; track $index) {
         <tr>
+          @for (col of tableConfig.headerConfig; track $index) {
           <th
             class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
-            <ng-content [select]="'table-head-before-' + item.key"></ng-content>
-            {{ item.content }}
-            <ng-content [select]="'table-head-after-' + item.key"></ng-content>
+            {{ col.title }}
           </th>
+          }
         </tr>
-        }
       </thead>
       <tbody>
         @for (row of data; track $index) {
         <tr>
-          @for (cell of row; track $index) {
+          @for (col of tableConfig.headerConfig; track $index) {
           <td
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+            [class]="{ 'cursor-pointer': row[col.key].link }"
+            (click)="clickCellEvent(row[col.key].link)"
           >
-            <ng-content [select]="'table-cell-before-' + cell.key"></ng-content>
-            {{ cell.content }}
-            <ng-content [select]="'table-cell-after-' + cell.key"></ng-content>
+            @if (row[col.key].iconPrefix) {
+            <i class="mr-2" [class]="row[col.key].iconPrefix"></i>
+            } @if (col.type == 'progress-bar') {
+            <app-progress-bar [value]="row[col.key].content"></app-progress-bar>
+            } @else {
+            {{ row[col.key].content }}
+            } @if (row[col.key].icon) {
+            <i class="mrl-2" [class]="row[col.key].icon"></i>
+            }
           </td>
           }
         </tr>

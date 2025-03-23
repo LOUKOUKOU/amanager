@@ -1,0 +1,6 @@
+<app-notus-table (tableButtonClick)="setModal(true)" [button]="'Add Project'">
+  <p ngProjectAs="table-head">Projects</p>
+</app-notus-table>
+<app-modal [showModal]="showModal" (modalCloseEvent)="setModal(false)">
+  <span ngProjectAs="modal-title">Add Project</span>
+</app-modal>

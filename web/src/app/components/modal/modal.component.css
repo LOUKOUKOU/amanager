@@ -1,0 +1,16 @@
+.modal {
+  width: 70%;
+  min-height: 80%;
+}
+
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-close-button {
+  top: 10px;
+  right: 10px;
+  line-height: 0.1;
+}

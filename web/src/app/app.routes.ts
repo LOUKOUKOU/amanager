@@ -18,18 +18,21 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { LoginService } from './services/LoginService';
 import { authGuardGuard } from './guards/auth-guard.guard';
 import { SessionService } from './services/SessionService';
+import { ProjectsComponent } from './views/admin/projects/projects.component';
+import { TasksComponent } from './views/admin/tasks/tasks.component';
+import { ProfilesComponent } from './views/admin/profiles/profiles.component';
 
 export const routes: Routes = [
   // admin views
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [authGuardGuard],
+    // canActivate: [authGuardGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'projects', component: SettingsComponent },
-      // { path: 'tasks', component: TablesComponent },
-      // { path: 'profiles', component: TablesComponent },
+      { path: 'projects', component: ProjectsComponent },
+      { path: 'tasks', component: TasksComponent },
+      { path: 'profiles', component: ProfilesComponent },
     ],
   },
   // auth views
