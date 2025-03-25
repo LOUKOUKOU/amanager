@@ -14,4 +14,14 @@ export class TasksComponent extends baseAdmin {
   constructor() {
     super();
   }
+  // ,
+  //     {
+  //       key: 'status',
+  //       label: 'Status',
+  //       type: 'select',
+  //       required: true,
+  //       options: ['Active', 'Inactive'],
+  //       placeholder: 'Status',
+  //       errorMessage: 'Status is required',
+  //     },
 }

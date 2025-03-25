@@ -7,6 +7,7 @@ export interface Session {
   organisationName: string;
   access_token: string;
   profileId: string;
+  profileType: number;
 }
 
 export interface Profile {
@@ -16,6 +17,12 @@ export interface Profile {
   tasks: number;
   projects: number;
   assignedProjects: number;
+}
+
+export enum PROFILE_TYPE {
+  ADMIN,
+  SUPERVISOR,
+  DEVELOPER,
 }
 
 @Injectable({ providedIn: 'root' })
@@ -33,8 +40,16 @@ export class SessionService {
     return this.sessionSubject.value;
   }
 
+  public get profileId() {
+    return this.session?.profileId || '';
+  }
+
   public get token() {
     return this.session?.access_token || '';
+  }
+
+  public get profileType() {
+    return this.session?.profileType;
   }
 
   isAuthenticated() {

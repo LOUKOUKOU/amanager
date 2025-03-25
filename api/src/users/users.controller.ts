@@ -17,11 +17,7 @@ import { Public } from 'src/metadata';
 
 @Controller('users')
 export class UsersController {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly organisationsService: OrganisationsService,
-    private readonly profilesService: ProfilesService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {

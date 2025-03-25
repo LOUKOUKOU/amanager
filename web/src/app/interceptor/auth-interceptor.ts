@@ -21,21 +21,22 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const sessionService = inject(SessionService);
     const authToken = sessionService.token;
-    console.log(req.params);
 
     const newReq = this.isPublic(req.url)
       ? req
       : req.clone({
-          headers: req.headers.append('X-Authentication-Token', authToken),
+          headers: req.headers.append('authorization', `Bearer ${authToken}`),
         });
 
     return handler.handle(newReq).pipe(
-      tap((event) => {
-        if (event.type === HttpEventType.Response) {
-          if (event.status == 401) {
+      tap({
+        error: (error) => {
+          if (error?.error.statusCode == 401) {
             sessionService.clearSession();
+          } else {
+            console.error(error);
           }
-        }
+        },
       })
     );
   }

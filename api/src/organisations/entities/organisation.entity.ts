@@ -16,6 +16,7 @@ export class Organisation {
   id: number;
 
   @Generated('uuid')
+  @Column()
   organisationId: string;
 
   @Column()
