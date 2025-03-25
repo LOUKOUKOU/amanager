@@ -8,6 +8,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { ProjectService } from './services/ProjectService';
 
 export const appConfig: ApplicationConfig = {
   providers: [

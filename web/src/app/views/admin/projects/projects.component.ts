@@ -4,13 +4,11 @@ import { Component } from '@angular/core';
 import { baseAdmin } from '../base-admin';
 import { FormComponent, FormConfig } from '@/components/form/form.component';
 import { CreateProjectDto, ProjectService } from '@/services/ProjectService';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
   imports: [NotusTableComponent, ModalComponent, FormComponent],
-  providers: [ProjectService],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
 })
@@ -68,8 +66,8 @@ export class ProjectsComponent extends baseAdmin {
   };
 
   constructor(protected projectService: ProjectService) {
-    projectService.initialiseData();
     super();
+    projectService.initialiseData();
   }
 
   submitForm(data: Record<string, string>) {

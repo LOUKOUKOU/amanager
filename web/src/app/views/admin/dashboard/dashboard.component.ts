@@ -10,7 +10,6 @@ import { ProjectService } from '@/services/ProjectService';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   imports: [NotusTableComponent],
-  providers: [ProjectService],
   standalone: true,
 })
 export class DashboardComponent {

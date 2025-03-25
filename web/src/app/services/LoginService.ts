@@ -46,7 +46,6 @@ export class LoginService {
       .pipe(
         map((user: Session) => {
           this.sessionService.clearSession();
-          //   this.router.navigate(['/admin/dashboard']);
           return user;
         })
       );

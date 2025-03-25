@@ -48,9 +48,6 @@ export class RegisterComponent {
     this.loginService.register(this.form.value).subscribe({
       next: () => {
         this.router.navigate(['/admin/dashboard']);
-        // get return url from query parameters or default to home page
-        // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        // this.router.navigateByUrl(returnUrl);
       },
       error: (error) => {
         // this.alertService.error(error);

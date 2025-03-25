@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NotificationDropdownComponent } from '../dropdowns/notification-dropdown/notification-dropdown.component';
 import { UserDropdownComponent } from '../dropdowns/user-dropdown/user-dropdown.component';
-import { LoginService } from '@/services/LoginService';
+import { SessionService } from '@/services/SessionService';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,19 +14,18 @@ import { LoginService } from '@/services/LoginService';
     UserDropdownComponent,
     RouterLinkActive,
   ],
-  providers: [LoginService],
 })
 export class SidebarComponent {
   collapseShow = 'hidden';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private sessionService: SessionService, private router: Router) {}
 
   toggleCollapseShow(classes: string) {
     this.collapseShow = classes;
   }
 
   logout() {
-    this.loginService.logout();
+    this.sessionService.clearSession();
     this.router.navigate(['/auth/login']);
   }
 }
