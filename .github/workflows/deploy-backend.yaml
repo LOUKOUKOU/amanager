@@ -1,4 +1,4 @@
-name: (Develop) Deploy Chats
+name: (Production) Deploy Louw Assessment Backend
 
 on:
   push:
@@ -14,10 +14,10 @@ permissions:
 
 env:
   ECS_CLUSTER: main
-  ECS_SERVICE: chat
-  ECS_TASK_DEFINITION: chat
-  ECR_REPOSITORY: chat
-  CONTAINER_NAME: chat
+  ECS_SERVICE: amanager
+  ECS_TASK_DEFINITION: amanager
+  ECR_REPOSITORY: amanager
+  CONTAINER_NAME: amanager
 
 jobs:
   deployment:
