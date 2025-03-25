@@ -28,8 +28,10 @@ export class ProfilesService {
     return `This action returns all profiles`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} profile`;
+  findOne(id: string) {
+    return this.profileRepository.findOne({
+      where: { profileId: id },
+    });
   }
 
   findOneByUser(id: number) {
@@ -38,11 +40,11 @@ export class ProfilesService {
     });
   }
 
-  update(id: number, updateProfileDto: UpdateProfileDto) {
+  update(id: string, updateProfileDto: UpdateProfileDto) {
     return `This action updates a #${id} profile`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} profile`;
   }
 }

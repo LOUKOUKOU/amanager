@@ -4,6 +4,7 @@ import { Task } from 'src/tasks/entities/task.entity';
 import {
   Column,
   Entity,
+  Generated,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -14,6 +15,10 @@ import {
 export class Project {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Generated('uuid')
+  @Column()
+  projectId: string;
 
   @ManyToOne(() => Profile, (profile) => profile.projects)
   supervisor: Profile;
@@ -37,5 +42,5 @@ export class Project {
   startDate: Date;
 
   @Column()
-  deadline: Date;
+  dueDate: Date;
 }

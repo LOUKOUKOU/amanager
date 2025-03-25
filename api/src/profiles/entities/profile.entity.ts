@@ -14,9 +14,9 @@ import {
 } from 'typeorm';
 
 export enum PROFILE_TYPE {
+  ADMIN,
   SUPERVISOR,
   DEVELOPER,
-  ADMIN,
 }
 
 @Entity()

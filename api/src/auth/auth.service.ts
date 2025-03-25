@@ -11,6 +11,7 @@ export type SessionInfo = {
   username: string;
   displayName: string;
   profileId: string;
+  profileType: PROFILE_TYPE;
   organisationName: string;
 };
 
@@ -62,7 +63,8 @@ export class AuthService {
       sub: user.id,
       userId: user.id,
       username: user.username,
-      profileId: profile.id,
+      profileId: profile.profileId,
+      organisationId: organisation.id,
       organisationName: organisation.name,
     };
     return {
@@ -70,6 +72,7 @@ export class AuthService {
       displayName: profile.displayName,
       organisationName: organisation.name,
       profileId: profile.profileId,
+      profileType: profile.type,
       access_token: await this.jwtService.signAsync(payload),
     };
   }

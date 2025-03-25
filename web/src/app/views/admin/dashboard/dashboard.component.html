@@ -1,8 +1,8 @@
 <div class="flex flex-wrap mt-4">
   <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
     <app-notus-table
-      [tableConfig]="projectTableConfig"
-      [data]="projects"
+      [tableConfig]="projectService.projectTableConfig"
+      [data]="projectService.projects"
       [link]="'/admin/projects'"
     >
       <p ngProjectAs="table-head">Projects</p>

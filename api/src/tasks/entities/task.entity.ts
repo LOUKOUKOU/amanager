@@ -1,6 +1,12 @@
 import { Profile } from 'src/profiles/entities/profile.entity';
 import { Project } from 'src/projects/entities/project.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Generated,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum TASK_STATUS {
   BACKLOG,
@@ -15,6 +21,10 @@ export enum TASK_STATUS {
 export class Task {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Generated('uuid')
+  @Column()
+  taskId: string;
 
   @ManyToOne(() => Task, (task) => task.assignee)
   assignee: Profile;

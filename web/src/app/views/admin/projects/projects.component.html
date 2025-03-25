@@ -1,6 +1,18 @@
-<app-notus-table (tableButtonClick)="setModal(true)" [button]="'Add Project'">
+<app-notus-table
+  [data]="projectService.projects"
+  [tableConfig]="projectService.projectTableConfig"
+  (tableButtonClick)="setModal(true)"
+  [button]="'Add Project'"
+>
   <p ngProjectAs="table-head">Projects</p>
 </app-notus-table>
 <app-modal [showModal]="showModal" (modalCloseEvent)="setModal(false)">
   <span ngProjectAs="modal-title">Add Project</span>
+
+  <app-form
+    [class]="'flex-1'"
+    [formConfig]="formConfig"
+    [values]="formValues"
+    (formSubmit)="submitForm($event)"
+  ></app-form>
 </app-modal>
