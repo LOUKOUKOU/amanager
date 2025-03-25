@@ -51,7 +51,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: () => {
       const sessionService = inject(SessionService);
-      console.log(sessionService.isAuthenticated());
 
       if (sessionService.isAuthenticated()) {
         return 'admin/dashboard';

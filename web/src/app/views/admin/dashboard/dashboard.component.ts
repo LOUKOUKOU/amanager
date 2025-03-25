@@ -14,5 +14,7 @@ import { ProjectService } from '@/services/ProjectService';
   standalone: true,
 })
 export class DashboardComponent {
-  constructor(protected projectService: ProjectService) {}
+  constructor(protected projectService: ProjectService) {
+    projectService.initialiseData();
+  }
 }
