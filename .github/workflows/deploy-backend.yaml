@@ -14,10 +14,10 @@ permissions:
 
 env:
   ECS_CLUSTER: main
-  ECS_SERVICE: amanager
-  ECS_TASK_DEFINITION: amanager
-  ECR_REPOSITORY: amanager
-  CONTAINER_NAME: amanager
+  ECS_SERVICE: louw-assessment-backend
+  ECS_TASK_DEFINITION: louw-assessment-backend
+  ECR_REPOSITORY: louw-assessment-backend
+  CONTAINER_NAME: louw-assessment-backend
 
 jobs:
   deployment:
